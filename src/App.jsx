@@ -3,14 +3,15 @@ import logo from "./assets/MyTestApp.png";
 import hero from "./assets/hero.png";
 import axios from "axios";
 const App = () => {
-  const [data, setdata] = useState([]);
-  const search = async () => {
+  const [data, setdata] = useState({});
+  const search = async (val) => {
     let response = await axios.get(
-      "https://www.omdbapi.com/?i=tt3896198&apikey=b130f209"
+      `https://www.omdbapi.com/?t=${val}&apikey=b130f209`
     );
     if (response.status == 200) {
       setdata(response.data);
     }
+    console.log(response.data);
   };
   return (
     <>
@@ -47,9 +48,26 @@ const App = () => {
         >
           Search
         </label>
-        <input type="text" className="border border-5 border-black sm:py-2 " />
+        <input
+          type="text"
+          className="border border-5 border-black sm:py-2 "
+          onChange={(e) => {
+            search(e.target.value);
+          }}
+        />
       </div>
-      <p className="px-5  text-lg lg:py-10  xl:ml-10 text-black font-semibold sm:text-2xl md:text-4xl">
+      <p className="px-5 pt-5  text-lg lg:py-10  xl:ml-10 text-black font-semibold sm:text-2xl md:text-4xl">
+        Movie
+      </p>
+      <div className="flex px-5 overflow-auto h-84 xl:ml-10">
+        <div className="relative">
+          <div className="relative px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:h-46  mr-3 bg-black flex justify-center items-center text-white rounded-lg">
+            <div className="absolute">{data.Title}</div>
+            <img src={data.Poster} alt="" className="object-scale-down" />
+          </div>
+        </div>
+      </div>
+      <p className="px-5 pt-5   text-lg lg:py-10  xl:ml-10 text-black font-semibold sm:text-2xl md:text-4xl">
         Movie
       </p>
       <div className="flex px-5 overflow-auto  py-3 xl:ml-10">
@@ -62,30 +80,10 @@ const App = () => {
         <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36 mr-3 bg-black flex justify-center items-center text-white rounded-lg">
           come
         </div>{" "}
-        <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36mr-3 bg-black flex justify-center items-center text-white rounded-lg">
-          come
-        </div>{" "}
-        <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36mr-3 bg-black flex justify-center items-center text-white rounded-lg">
-          come
-        </div>
-      </div>
-      <p className="px-5  text-lg lg:py-10  xl:ml-10 text-black font-semibold sm:text-2xl md:text-4xl">
-        Movie
-      </p>
-      <div className="flex px-5 overflow-auto  py-3 xl:ml-10">
-        <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36  mr-3 bg-black flex justify-center items-center text-white rounded-lg">
-          come
-        </div>
         <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36 mr-3 bg-black flex justify-center items-center text-white rounded-lg">
           come
         </div>{" "}
         <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36 mr-3 bg-black flex justify-center items-center text-white rounded-lg">
-          come
-        </div>{" "}
-        <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36mr-3 bg-black flex justify-center items-center text-white rounded-lg">
-          come
-        </div>{" "}
-        <div className="px-28 py-20 sm:py-28  md:text-3xl md:mr-4 xl:text-3xl xl:py-36mr-3 bg-black flex justify-center items-center text-white rounded-lg">
           come
         </div>
       </div>

@@ -18,7 +18,7 @@ const App = () => {
         <img src={hero} alt="" className="object-contain w-screen" />
       </div>
 
-      <div className="flex flex-col p-5 justify-center">
+      <div className="flex flex-col px-5 pt-5 justify-center">
         <label htmlFor="">Search</label>
         <input type="text" className="border border-5 border-black" />
       </div>
